@@ -2,8 +2,27 @@ module App
 
 open Browser.Dom
 
-let printMsgButton = document.getElementById "printMsg"
+// get references for UI elements
+let increase = document.getElementById "increase"
+let decrease = document.getElementById "decrease"
+let countViewer = document.getElementById "countViewer"
 
-printMsgButton.onclick <- fun eventArgs -> printfn "Button clicked"
+let mutable currentCount = 0
 
-printfn "Fable is up and running..."
+//attach even handlers
+increase.onclick <-
+    fun ev ->
+        // update the state
+        currentCount <- currentCount + 1
+        // update the view
+        countViewer.innerText <- sprintf "Count is at %d" currentCount
+
+decrease.onclick <-
+    fun ev ->
+        // update the state
+        currentCount <- currentCount - 1
+        // update the view
+        countViewer.innerText <- sprintf "Count is at %d" currentCount
+
+// set the count viewer with the initial count
+countViewer.innerText <- sprintf "Count is at %d" currentCount
