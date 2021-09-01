@@ -29,7 +29,7 @@ decrease.onclick <-
 // set the count viewer with the initial count
 countViewer.innerText <- sprintf "Count is at %d" currentCount
 
-// Runs the callback after a delay
+// Runs the callback after a delay *HOW DOES THIS WORK*
 let runAfter (ms: int) callback =
     async {
         do! Async.Sleep ms
