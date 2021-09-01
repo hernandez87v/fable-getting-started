@@ -28,3 +28,19 @@ decrease.onclick <-
 
 // set the count viewer with the initial count
 countViewer.innerText <- sprintf "Count is at %d" currentCount
+
+// Runs the callback after a delay
+let runAfter (ms: int) callback =
+    async {
+        do! Async.Sleep ms
+        do callback()
+    }
+    |> Async.StartImmediate
+
+let increaseDelayed = document.getElementById "increaseDelayed"
+
+increaseDelayed.onclick <- fun _ ->
+    runAfter 1000 (fun () ->
+        currentCount <- currentCount + rnd.Next(5, 10)
+        countViewer.innerText <- sprintf "Count is at %d" currentCount
+    )
